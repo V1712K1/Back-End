@@ -1,0 +1,98 @@
+// 3.
+// a)
+const express = require('express')
+const app = express()
+const port = 8000
+
+// b)
+var mysql = require ('mysql');
+
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "stand"
+});
+
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
+});
+
+// Parte A
+// a)
+//   app.get ('/', function (request, response){
+//     con.connect(function(err) {
+//         if (err) throw err;
+//         con.query("SELECT * FROM cars", function (err, result, fields) {
+//           if (err) throw err;
+//           console.log(result);
+//           response.send(result);
+//         });
+//       });
+// }) ;  
+
+// b)
+
+// app.post ('/novo', function (request, response){
+//     con.connect(function(err) {
+//         if (err) throw err;
+//         var sql = "INSERT INTO cars (id, seller_id, brandmodel, description, price, url, views, images, comments, tags) VALUES ('7','2','Audi', 'RS4', '90000', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fauto-drive.pt%2F2020%2F10%2F02%2Fabt-puxa-pelo-lado-feroz-da-audi-rs4-avant%2F&psig=AOvVaw2MdMpQDGI2FXxCLgMsdVjQ&ust=1621442275092000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPD70qjV0_ACFQAAAAAdAAAAABAE','1',NULL,NULL,NULL)";
+//         con.query(sql, function (err, result) {
+//           if (err) throw err;
+//           console.log("1 record inserted");
+//         });
+//         con.query("SELECT cars.id FROM cars WHERE cars.brandmodel = 'Toyota' ", function (err, result, fields) {
+//             if (err) throw err;
+//             console.log(result);
+//             response.send(result);
+//         });
+//     });
+// }) ;
+
+// c)
+
+// app.get ('/seller', function (request, response){
+//         con.connect(function(err) {
+//             if (err) throw err;
+//             con.query("SELECT cars.brandmodel as 'Marca', concat(cars.description) as 'Modelo' FROM cars WHERE cars.seller_id = '1'", function (err, result, fields) {
+//               if (err) throw err;
+//               console.log(result);
+//               response.send(result);
+//             });
+//           });
+//     }) ;  
+
+// d)
+// app.post ('/update/:id', function (request, response){
+//     var id = request.params.id
+//     con.connect(function(err) {
+//     if (err) throw err;
+//         con.query(`UPDATE cars set cars.views = views+1 WHERE cars.id = ${id} `, function (err, result, fields) {
+//             console.log(result);
+//             response.send(result);
+//         });  
+//     });
+//     // var query = `SELECT * FROM cars WHERE cars.id = ${id}`;
+//     //     con.query(query, function(err, result){
+//     //         if(err) throw err;
+//     //         if(result == '')
+//     //             response.send("Nao existe!");
+//     //         else 
+//     //             response.send(result);    
+//     //     }); 
+
+// });
+
+
+// e)
+
+app.get ('/tag', function (request, response){
+    con.connect(function(err) {
+        if (err) throw err;
+        con.query("SELECT * FROM cars WHERE JSON_CONTAINS(tags, ' [", "Vermelho","]"), function (err, result, fields) {
+          if (err) throw err;
+          console.log(result);
+          response.send(result);
+        };
+    });
+}) ; 
