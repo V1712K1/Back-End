@@ -1,0 +1,75 @@
+// const swaggerUi = require('swagger-ui-express');
+// const swaggerDocument = require('./swagger.json');
+
+// const app = express();
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// nao te importes que de erro
+
+
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Projeto1",
+        "description": "Projeto1 Information",
+        "contact":{
+            "name": "TPSI-DWB"
+        },
+        "servers":[
+            "http://localhost:8000"
+        ]
+    },
+    "paths":{
+        "definitions":{
+            "Car": {
+                "type": "object",
+                "properties" : {
+                    "id": {
+                        "primaryKey": true,
+                        "type": "integer",
+                        "autoIncrement": true,
+                        "allowNull": false
+                    },
+                    "seller_id": {
+                        "type": "integer",
+                        "allowNull": false
+                    },
+                    "brandmodel": {
+                        "type":"string",
+                        "allowNull": false
+                    }, 
+                    "description": {
+                        "type":"string",
+                        "allowNull": false
+                    },
+                    "price": {
+                        "type":"decimal",
+                        "allowNull": false
+                    },
+                    "url": {
+                        "type":"string",
+                        "allowNull": false
+                    },
+                    "views": {
+                        "type":"integer",
+                        "format":"int64",
+                        "allowNull": false
+                    },
+                    "images": {
+                        "type":"json",
+                        "allowNull": false
+                    },
+                    "comments": {
+                        "type":"json",
+                        "allowNull": false
+                    },
+                    "tags": {
+                        "type":"json",
+                        "allowNull": false
+                    }
+
+                }
+            }
+        }    
+    }
+}

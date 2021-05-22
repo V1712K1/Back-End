@@ -84,15 +84,89 @@ app.listen(port, () => {
 // });
 
 
-// e)
+// e) - standby
 
-app.get ('/tag', function (request, response){
-    con.connect(function(err) {
-        if (err) throw err;
-        con.query("SELECT * FROM cars WHERE JSON_CONTAINS(tags, ' [", "Vermelho","]"), function (err, result, fields) {
-          if (err) throw err;
-          console.log(result);
-          response.send(result);
-        };
-    });
-}) ; 
+// app.get ('/tag', function (request, response){
+//     con.connect(function(err) {
+//         if (err) throw err;
+//         con.query(" SELECT cars.brandmodel FROM cars WHERE JSON_CONTAINS(tags, '[\"Exotico\"]' ) ", function (err, result, fields) {
+//           if (err) throw err;
+//           console.log(result);
+//           response.send(result);
+//         });
+//     });
+// }); 
+
+// Parte B
+
+// a) -------------------------------------------------------------------------------------------
+
+// app.get ('/carroid', function (request, response){
+//     con.connect(function(err) {
+//         if (err) throw err;
+//         con.query(" SELECT * FROM cars WHERE cars.id = 1 ", function (err, result, fields) {
+//             if (err) throw err;
+//             console.log(result);
+//             response.send(result);
+//         });
+//     });
+// }) ; 
+
+// ------------------------------------------------------------------------------------------
+
+
+// b) -------------------------------------------------------------------------------------------
+
+// app.delete("/cars/:id", (req, res) => {
+//     con.connect(function(err) {
+//     var id = req.params.id;
+//     if (err) throw err;
+//        console.log("Connected!");
+//         con.query(`DELETE FROM cars WHERE id = ${id}`, function (err, result, fields) {
+//         if (err) throw err;
+//         console.log("Deletado");
+//         console.log("Number of records updated: " + result.affectedRows);
+//         });
+//     });
+// });
+
+// --------------------------------------------------------------------------------------
+
+
+// c) ---------------------------------------------------------------------------------------
+
+// app.put ('/adicionaimg/:id', function (request, response){
+//     var id = request.params.id
+//     con.connect(function(err) {
+//         if (err) throw err;
+//         con.query(`Update cars SET images = '[\"https://www.ultimatespecs.com/cargallery/59/5183/w400_Koenigsegg-Agera-2.jpg\"]' WHERE cars.id = ${id}`, function (err, result, fields) {
+//           if (err) throw err;
+//           console.log("1 record inserted");
+//         });
+//         con.query(`SELECT cars.images as 'Result' FROM cars WHERE cars.id = ${id} `, function (err, result, fields) {
+//             if (err) throw err;
+//             console.log(result);
+//             response.send(result);
+//         });
+//     });
+// }); 
+
+
+// d) ---------------------------------------------------------------------------------------
+
+
+// app.put ('/adicionacmt/:id', function (request, response){
+//     var id = request.params.id
+//     con.connect(function(err) {
+//         if (err) throw err;
+//         con.query(`Update cars SET comments = '[\"Super Fast\"]' WHERE cars.id = ${id}`, function (err, result, fields) {
+//           if (err) throw err;
+//           console.log("1 record inserted");
+//         });
+//         con.query(`SELECT cars.comments as 'Result' FROM cars WHERE cars.id = ${id} `, function (err, result, fields) {
+//             if (err) throw err;
+//             console.log(result);
+//             response.send(result);
+//         });
+//     });
+// }); 
