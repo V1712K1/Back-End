@@ -36,12 +36,12 @@ app.listen(port, () => {
 // app.post ('/novo', function (request, response){
 //     con.connect(function(err) {
 //         if (err) throw err;
-//         var sql = "INSERT INTO cars (id, seller_id, brandmodel, description, price, url, views, images, comments, tags) VALUES ('7','2','Audi', 'RS4', '90000', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fauto-drive.pt%2F2020%2F10%2F02%2Fabt-puxa-pelo-lado-feroz-da-audi-rs4-avant%2F&psig=AOvVaw2MdMpQDGI2FXxCLgMsdVjQ&ust=1621442275092000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPD70qjV0_ACFQAAAAAdAAAAABAE','1',NULL,NULL,NULL)";
+//         var sql = "INSERT INTO cars (seller_id, brandmodel, description, price, url, views, images, comments, tags) VALUES ('2','Audi', 'RS4', '90000', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fauto-drive.pt%2F2020%2F10%2F02%2Fabt-puxa-pelo-lado-feroz-da-audi-rs4-avant%2F&psig=AOvVaw2MdMpQDGI2FXxCLgMsdVjQ&ust=1621442275092000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPD70qjV0_ACFQAAAAAdAAAAABAE','1','[\"https://www.planetcarsz.com/assets/uploads/6964937961eb825847abda468c847cf9.jpg\"]','[\"Family Supercar\"]','[\"Cinzento\",\"Desportivo\"]')";
 //         con.query(sql, function (err, result) {
 //           if (err) throw err;
 //           console.log("1 record inserted");
 //         });
-//         con.query("SELECT cars.id FROM cars WHERE cars.brandmodel = 'Toyota' ", function (err, result, fields) {
+//         con.query("SELECT cars.id FROM cars WHERE cars.brandmodel = 'Audi' ", function (err, result, fields) {
 //             if (err) throw err;
 //             console.log(result);
 //             response.send(result);
