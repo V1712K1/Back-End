@@ -72,14 +72,14 @@ app.listen(port, () => {
 //             response.send(result);
 //         });  
 //     });
-//     // var query = `SELECT * FROM cars WHERE cars.id = ${id}`;
-//     //     con.query(query, function(err, result){
-//     //         if(err) throw err;
-//     //         if(result == '')
-//     //             response.send("Nao existe!");
-//     //         else 
-//     //             response.send(result);    
-//     //     }); 
+    // var query = `SELECT * FROM cars WHERE cars.id = ${id}`;
+    //     con.query(query, function(err, result){
+    //         if(err) throw err;
+    //         if(result == '')
+    //             response.send("Nao existe!");
+    //         else 
+    //             response.send(result);    
+    //     }); 
 
 // });
 
@@ -170,3 +170,19 @@ app.listen(port, () => {
 //         });
 //     });
 // }); 
+
+// e) ----------------------------------------------------------------------------------------
+
+
+// app.get ('/listaview', function (request, response){
+//     con.connect(function(err) {
+//         if (err) throw err;
+//         con.query(" SELECT cars.brandmodel, concat(cars.description) as 'Modelo' FROM cars ORDER BY views ASC ", function (err, result, fields) {
+//             if (err) throw err;
+//             console.log(result);
+//             response.send(result);
+//         });
+//     });
+// }) ; 
+
+

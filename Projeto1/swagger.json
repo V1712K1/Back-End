@@ -3,7 +3,7 @@
 
 // const app = express();
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-// nao te importes que de erro
+
 
 
 {
@@ -21,7 +21,7 @@
     },
     "paths":{
         "definitions":{
-            "Car": {
+            "cars": {
                 "type": "object",
                 "properties" : {
                     "id": {
