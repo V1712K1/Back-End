@@ -4,6 +4,14 @@ const express = require('express')
 const app = express()
 const port = 8000
 
+// parte C
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // b)
 var mysql = require ('mysql');
 
@@ -52,9 +60,10 @@ app.listen(port, () => {
 // c)
 
 // app.get ('/seller', function (request, response){
+//         var carros = request.query.carros
 //         con.connect(function(err) {
 //             if (err) throw err;
-//             con.query("SELECT cars.brandmodel as 'Marca', concat(cars.description) as 'Modelo' FROM cars WHERE cars.seller_id = '1'", function (err, result, fields) {
+//             con.query(`SELECT cars.brandmodel as 'Marca', concat(cars.description) as 'Modelo' FROM cars WHERE cars.seller_id =${carros} `, function (err, result, fields) {
 //               if (err) throw err;
 //               console.log(result);
 //               response.send(result);
@@ -87,9 +96,10 @@ app.listen(port, () => {
 // e) - standby
 
 // app.get ('/tag', function (request, response){
+//     var tags = request.query.tags
 //     con.connect(function(err) {
 //         if (err) throw err;
-//         con.query(" SELECT cars.brandmodel FROM cars WHERE JSON_CONTAINS(tags, '[\"Exotico\"]' ) ", function (err, result, fields) {
+//         con.query(` SELECT cars.brandmodel FROM cars WHERE JSON_CONTAINS(tags, '[\"${tags}\"]' ) `, function (err, result, fields) {
 //           if (err) throw err;
 //           console.log(result);
 //           response.send(result);
@@ -102,9 +112,10 @@ app.listen(port, () => {
 // a) -------------------------------------------------------------------------------------------
 
 // app.get ('/carroid', function (request, response){
+//     var id = request.query.id
 //     con.connect(function(err) {
 //         if (err) throw err;
-//         con.query(" SELECT * FROM cars WHERE cars.id = 1 ", function (err, result, fields) {
+//         con.query(` SELECT * FROM cars WHERE cars.id = ${id} `, function (err, result, fields) {
 //             if (err) throw err;
 //             console.log(result);
 //             response.send(result);
@@ -155,21 +166,22 @@ app.listen(port, () => {
 // d) ---------------------------------------------------------------------------------------
 
 
-// app.put ('/adicionacmt/:id', function (request, response){
-//     var id = request.params.id
-//     con.connect(function(err) {
-//         if (err) throw err;
-//         con.query(`Update cars SET comments = '[\"Super Fast\"]' WHERE cars.id = ${id}`, function (err, result, fields) {
-//           if (err) throw err;
-//           console.log("1 record inserted");
-//         });
-//         con.query(`SELECT cars.comments as 'Result' FROM cars WHERE cars.id = ${id} `, function (err, result, fields) {
-//             if (err) throw err;
-//             console.log(result);
-//             response.send(result);
-//         });
-//     });
-// }); 
+app.post ('/adicionacmt', function (request, response){
+    var id = request.query.id;
+    var detalhes = request.body;
+    con.connect(function(err) {
+        if (err) throw err;
+        con.query(`Update cars SET ? WHERE cars.id = ?`, [detalhes,id] , function (err, result, fields) {
+          if (err) throw err;
+          console.log("1 record inserted");
+        });
+        con.query(`SELECT cars.comments as 'Result' FROM cars WHERE cars.id = ${id} `, function (err, result, fields) {
+            if (err) throw err;
+            console.log(result);
+            response.send(result);
+        }); 
+    });
+}); 
 
 // e) ----------------------------------------------------------------------------------------
 
@@ -177,7 +189,7 @@ app.listen(port, () => {
 // app.get ('/listaview', function (request, response){
 //     con.connect(function(err) {
 //         if (err) throw err;
-//         con.query(" SELECT cars.brandmodel, concat(cars.description) as 'Modelo', concat(cars.views) as 'Vistas' FROM cars ORDER BY views ASC ", function (err, result, fields) {
+//         con.query(" SELECT cars.brandmodel, concat(cars.views) as 'Vistas' FROM cars ORDER BY views ASC", function (err, result, fields) {
 //             if (err) throw err;
 //             console.log(result);
 //             response.send(result);
