@@ -93,7 +93,7 @@ app.listen(port, () => {
 // });
 
 
-// e) - standby
+// e) 
 
 // app.get ('/tag', function (request, response){
 //     var tags = request.query.tags
@@ -166,22 +166,22 @@ app.listen(port, () => {
 // d) ---------------------------------------------------------------------------------------
 
 
-app.post ('/adicionacmt', function (request, response){
-    var id = request.query.id;
-    var detalhes = request.body;
-    con.connect(function(err) {
-        if (err) throw err;
-        con.query(`Update cars SET ? WHERE cars.id = ?`, [detalhes,id] , function (err, result, fields) {
-          if (err) throw err;
-          console.log("1 record inserted");
-        });
-        con.query(`SELECT cars.comments as 'Result' FROM cars WHERE cars.id = ${id} `, function (err, result, fields) {
-            if (err) throw err;
-            console.log(result);
-            response.send(result);
-        }); 
-    });
-}); 
+// app.post ('/adicionacmt', function (request, response){
+//     var id = request.query.id;
+//     var detalhes = request.body;
+//     con.connect(function(err) {
+//         if (err) throw err;
+//         con.query(`Update cars SET ? WHERE cars.id = ?`, [detalhes,id] , function (err, result, fields) {
+//           if (err) throw err;
+//           console.log("1 record inserted");
+//         });
+//         con.query(`SELECT cars.comments as 'Result' FROM cars WHERE cars.id = ${id} `, function (err, result, fields) {
+//             if (err) throw err;
+//             console.log(result);
+//             response.send(result);
+//         }); 
+//     });
+// }); 
 
 // e) ----------------------------------------------------------------------------------------
 
